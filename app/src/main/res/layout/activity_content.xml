@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.apsn.library.com.example.apsn.classicLiterature.contentActivity">
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/test1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.apsn.library.View.Fsgifview
+            android:id="@+id/test2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <ListView
+
+        android:id="@+id/list_searchBook_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>

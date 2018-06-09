@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:orientation="vertical"
+tools:context="com.example.apsn.library.com.example.apsn.classicLiterature.contentActivity">
+<LinearLayout
+    android:orientation="horizontal"
+    android:id="@+id/top"
+    android:background="@color/lightcoral"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="search"
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+    <LinearLayout
+        android:background="@drawable/shape_edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:textColor="@color/colorAccent"
+            android:text="@string/recom"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ListView
+        android:id="@+id/recommbooklist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>
+
+</LinearLayout>

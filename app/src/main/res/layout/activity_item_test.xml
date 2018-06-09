@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.apsn.library.com.example.apsn.testActiviity.itemTestActivity">
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/test3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.apsn.library.View.Fsgifview
+            android:id="@+id/test4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/catlogList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>
