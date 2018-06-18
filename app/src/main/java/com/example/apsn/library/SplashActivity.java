@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.example.apsn.library.DB.DbActivity;
+
 public class SplashActivity extends AppCompatActivity {
 private  static  final  int DISPLAY_TIME=2000;
     private Handler handler;

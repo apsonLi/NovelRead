@@ -14,43 +14,43 @@ public class getGetCatalogUrl extends abstractUrlGet {
     public Map<String, String> setCommonArg() {
 
 
-            Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
-            String randomString=(int)(Math.random()*10000000)+"";
+        String randomString = (int) (Math.random() * 10000000) + "";
 
-            map.put("Format", "JSON");
+        map.put("Format", "JSON");
 
-            map.put("UserID", "10000001");
+        map.put("UserID", "10000001");
 
-            map.put("SignatureMethod", "HMAC-SHA1");
+        map.put("SignatureMethod", "HMAC-SHA1");
 
-            map.put("SignatureNonce", randomString);
+        map.put("SignatureNonce", randomString);
 
 
-            map.put("Version", "1.0");
+        map.put("Version", "1.0");
 
-            map.put("Timestamp", System.currentTimeMillis()/1000+"");
-            return map;
+        map.put("Timestamp", System.currentTimeMillis() / 1000 + "");
+        return map;
     }
+
     @Override
     public String makeUrl(String a, String b, String c, String d) {
-        String url="";
-        try{
-            Map <String,String>map=setCommonArg();
+        String url = "";
+        try {
+            Map<String, String> map = setCommonArg();
             //需要分情况获得键值
 
-            map.put("SourceName",a);
-            map.put("SourceBookID",b);
-            map.put("Action",c);
-            url=Tools.getURL(map,d);
+            map.put("SourceName", a);
+            map.put("SourceBookID", b);
+            map.put("Action", c);
+            url = Tools.getURL(map, d);
 
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.print(e.toString());
         }
         return url;
     }
 
 
-    }
+}
 

@@ -36,7 +36,8 @@ public class getContentUtil {
         }
         catch (Exception e)
         {
-            throw  new RuntimeException("get（url）错误");
+
+            throw  new RuntimeException("get（url）错误" +url);
         }
         String strjson=responseType.getSb().toString();
         responseGetContent=(ResponseGetContent) parseCatalogJson(strjson);

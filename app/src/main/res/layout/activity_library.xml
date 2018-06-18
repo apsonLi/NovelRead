@@ -1,64 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.apsn.library.LibraryActivity">
-<LinearLayout
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!-- classic literature-->
+    tools:context="com.example.apsn.library.LibraryActivity">
+
+ <FrameLayout
+     android:id="@+id/topPanel"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+    android:layout_weight="1"
+     ></FrameLayout>
+
     <LinearLayout
-        android:id="@+id/classicLiterature"
-        android:orientation="vertical"
-        android:background="@color/orchid"
-        android:layout_weight="1"
+
+        android:id="@+id/bottom"
+        android:layout_weight=".01"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:textSize="20sp"
-            android:layout_marginTop="82dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/choice1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_shelf"
+                style="@style/BottomNavigationStyle"
+
+                android:text="shelf" />
+
+
+            <RadioButton
+                android:id="@+id/rb_me"
+                style="@style/BottomNavigationStyle"
+
+                android:text="me" />
+        </RadioGroup>
+
     </LinearLayout>
-    <!-- 网络小说 Network novel-->
-    <LinearLayout
-        android:id="@+id/networkNovel"
-        android:orientation="vertical"
-        android:background="@color/cornflowerblue"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:textSize="20sp"
-            android:layout_marginTop="82dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/choice2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <!--敬请期待 Coming soon-->
-    <LinearLayout
-        android:id="@+id/commingSoon"
-        android:orientation="vertical"
-        android:background="@color/lightsalmon"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:textSize="20sp"
-            android:layout_marginTop="82dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/choice3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout
->
+
+
+
+
+
+
 
 </LinearLayout>
-
-</RelativeLayout>

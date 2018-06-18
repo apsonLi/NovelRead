@@ -51,8 +51,8 @@ public class httpUtil {
 
             StringBuilder result;
             URL url;
-        connection = null;
-        responseType = new responseType();
+            connection = null;
+            responseType = new responseType();
                 try{
                     url = new URL(realurl);
 

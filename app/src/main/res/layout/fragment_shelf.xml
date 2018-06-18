@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.apsn.library.ShelfFragment">
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50sp">
+        <!-- top pannel-->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150sp"
+            android:layout_height="50sp"
+            android:src="@drawable/logo">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/indexSearch"
+            android:layout_marginLeft="150sp"
+            android:layout_marginStart="150sp"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:src="@drawable/search">
+
+        </ImageView>
+    </LinearLayout>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+
+        android:layout_marginTop="50sp"
+        android:id="@+id/indexRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="405sp">
+        <ListView
+            android:id="@+id/bookShelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout>
