@@ -93,8 +93,9 @@ class Tools{
         }
         URLBuffer.append("Signature=");
         //URLBuffer.append(getSignature(map, key));
+        //因为android 的base64编码出来会莫名其妙多出%0A这个字符串 与服务器不匹配  所以替换 JAVA可以无视
         String testString=java.net.URLEncoder.encode(getSignature(map, key), "UTF-8").replace("%0A","");
-
+        
         URLBuffer.append(testString);
 
         System.out.print(getSignature(map, key));
