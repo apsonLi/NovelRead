@@ -7,6 +7,6 @@ package com.example.apsn.library.Http.Httpconnect.sk;
 public class secretKey {
     public static String getKey()
     {
-        return "CxC5w%^sgn1lSUls";
+        return "";
     }
 }
