@@ -17,9 +17,12 @@ public class SQliteDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_Name = "shelf";
 
     //创建 students 表的 sql 语句
-    private static final String Shelf_CREATE_TABLE_SQL = "create table if not exists" + TABLE_Name + "("
-            + "id integer primary key autoincrement,"
-            + "name varchar(20) not null,"
+    private static final String Shelf_CREATE_TABLE_SQL = "create table if not exists " + TABLE_Name + "("
+            + "bookid varchar(50) primary key ,"
+            + "bookname varchar(20) not null,"
+            + "bookprofile text not null,"
+            + "sourcename varchar(20) not null,"
+            + "sourcebookid varchar(20) not null,"
             + "img BLOB not null,"
             + "newtitle varchar(50) not null"
             + ");";

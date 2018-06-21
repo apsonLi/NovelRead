@@ -2,11 +2,13 @@ package com.example.apsn.library;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+
+import com.example.apsn.library.Adapter.shelfAdapter;
+import com.example.apsn.library.DB.DbUtil;
+import com.example.apsn.library.DB.Shelfbean;
 import com.example.apsn.library.com.example.apsn.searchActivity;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +43,12 @@ public class ShelfFragment extends Fragment   {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private List<Shelfbean> shelfbeanList;
+    private ListView bookShelf;
+    private LinearLayout top;
+    private ImageView search;
+    private SwipeRefreshLayout refreshLayout;
+    private SQLiteDatabase db;
 
     public ShelfFragment() {
         // Required empty public constructor
@@ -72,10 +86,19 @@ public class ShelfFragment extends Fragment   {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_shelf, container, false);
-        final SwipeRefreshLayout refreshLayout = v.findViewById(R.id.indexRefresh);
-        LinearLayout top=v.findViewById(R.id.topPanel);
-        ListView bookShelf = v.findViewById(R.id.bookShelf);
-        ImageView search = v.findViewById(R.id.indexSearch);
+        //只有调用了这个getdb才能使用dbutil里的各个方法
+        db = DbUtil.getdb(getActivity());
+        init(v);
+
+        return  v;
+    }
+    private  void init(View v){
+        //初始化xml中的控件
+        refreshLayout = v.findViewById(R.id.indexRefresh);
+        top = v.findViewById(R.id.topPanel);
+        bookShelf = v.findViewById(R.id.bookShelf);
+        search = v.findViewById(R.id.indexSearch);
+        //点击搜索按钮跳转
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,15 +107,34 @@ public class ShelfFragment extends Fragment   {
                 startActivity(intent);
             }
         });
+
+       //下拉刷新操作
         refreshLayout.setColorSchemeColors(Color.RED);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshLayout.setRefreshing(true);
+                shelfbeanList = dbquery();
 
+                    bookShelf.setAdapter(new shelfAdapter(shelfbeanList,getActivity()));
+
+                refreshLayout.setRefreshing(false);
             }
         });
-        return  v;
+        //从数据库去出数据后渲染到listview
+        shelfbeanList = dbquery();
+
+            bookShelf.setAdapter(new shelfAdapter(shelfbeanList,getActivity()));
+
+
+    }
+
+    private List<Shelfbean> dbquery(){
+
+        if(db == null){
+            Log.d("error", "Dbutil.getdb has nullpointExceptino");
+        }
+        return DbUtil.queryShelf();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

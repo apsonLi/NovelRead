@@ -73,6 +73,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
     private jaydenxiao.com.expandabletextview.ExpandableTextView jy;
     private Intent intent;
     private Bundle bundle;
+    private Button addbook;
 
 
     @Override
@@ -88,6 +89,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
     }
     private  void init()
     {
+        addbook = (Button)findViewById(R.id.addBook);
         moyan = (jaydenxiao.com.expandabletextview.ExpandableTextView)findViewById(R.id.moyan);
         moyan.setText(getResources().getString(R.string.mysummary));
         cscs = (jaydenxiao.com.expandabletextview.ExpandableTextView) findViewById(R.id.cscs);
@@ -110,7 +112,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
 
         }
 
-
+        addbook.setOnClickListener(this);
         back.setOnClickListener(this);
         chapter.setOnClickListener(this);
         read.setOnClickListener(this);
@@ -190,7 +192,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.read:
-                 intent =new Intent();
+                intent =new Intent();
                 intent.setClass(SummaryActivity.this, ReadActivity.class);
                 bundle=new Bundle();
                 intent.putExtra("action","summary");
@@ -198,6 +200,8 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
+            case R.id.addBook:
+
 
 
 

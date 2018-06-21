@@ -12,14 +12,14 @@ import com.example.apsn.library.R;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
-
+//bookid,  bookname,  bookprofile,  sourcename,  sourcebookid, img, newtitle
 public class DbActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
-        SQLiteDatabase db = DbTest.getdb(getApplicationContext());
+        SQLiteDatabase db = DbUtil.getdb(getApplicationContext());
         TextView dbt = (TextView) findViewById(R.id.testdb);
         if(db == null){
             Log.d("error", "Dbtest.getdb has nullpointExceptino");
@@ -34,12 +34,12 @@ public class DbActivity extends AppCompatActivity {
             //第四步，将输出字节流转换为字节数组，并进行存储数据库操作，注意，所对应的列的数据类型应该是BLOB类型
             byte  [] img = os.toByteArray();
 
-            Log.d("succ",DbTest.mockShelfBean("test" , img , "newtest").toString());
+            Log.d("succ", DbUtil.mockShelfBean("bookid","bookname","bookprofile","sourcename","sourcebookid",  img , "newtest").toString());
 
-            DbTest.insertShelf(DbTest.ShelfToContentValues(DbTest.mockShelfBean("test" , img , "newtest")));
+            DbUtil.insertShelf(DbUtil.ShelfToContentValues(DbUtil.mockShelfBean("bookid","bookname","bookprofile","sourcename","sourcebookid",  img , "newtest")));
 
         }
-        List <Shelfbean> test =  DbTest.queryShelf();
+        List <Shelfbean> test =  DbUtil.queryShelf();
         Shelfbean sb =test.get(0);
         dbt.setText(sb.toString());
     }

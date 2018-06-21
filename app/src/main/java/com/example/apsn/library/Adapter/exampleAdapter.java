@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.apsn.library.Bean.Books;
 import com.example.apsn.library.Bean.Catalog;
 import com.example.apsn.library.R;
 
@@ -17,12 +16,12 @@ import java.util.List;
  * Created by apsn on 2018/3/17.
  */
 
-public class testBookCatalogAdapter extends BaseAdapter {
+public class exampleAdapter extends BaseAdapter {
     private List<Catalog> data;
     private Context context;
     private LayoutInflater inflater;
 
-    public testBookCatalogAdapter(List<Catalog> CatalogsList, Context context)
+    public exampleAdapter(List<Catalog> CatalogsList, Context context)
     {
         this.context=context;
         this.data=CatalogsList;
@@ -49,7 +48,7 @@ public class testBookCatalogAdapter extends BaseAdapter {
         viewHolderTest viewHolderTest=null;
         if(view==null)
         {
-            view=inflater.inflate(R.layout.rcommbooklist,null,false);
+            view=inflater.inflate(R.layout.shelfbeanliststyle,null,false);
             viewHolderTest=new viewHolderTest();
             viewHolderTest.Title=view.findViewById(R.id.booknameitem);
             view.setTag(viewHolderTest);

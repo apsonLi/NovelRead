@@ -20,13 +20,6 @@
             android:text="@string/bookNmae"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/txt_bookId"
-                android:layout_marginBottom="10dp"
-                android:textSize="20sp"
-                android:text="@string/bookId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/txt_bookAuthor"
@@ -40,12 +33,6 @@
                 android:id="@+id/txt_bookFromSource"
                 android:textSize="20sp"
                 android:text="@string/bookFromSource"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/txt_bookFromSourceId"
-                android:textSize="20sp"
-                android:text="@string/bookFromSourceId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

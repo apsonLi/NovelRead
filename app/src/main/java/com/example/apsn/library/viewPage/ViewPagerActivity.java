@@ -42,20 +42,18 @@ public class ViewPagerActivity extends FragmentActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_viewpager);
+		isfir();
 		initView();
-		date();
+
 
 	}
 
-	private void date() {
+	private void isfir() {
 		SharedPreferences shared = getSharedPreferences("is", MODE_PRIVATE);
 		boolean isfer = shared.getBoolean("isfer", true);
 		SharedPreferences.Editor editor = shared.edit();
-		if (isfer) {/*
-			//第一次进入跳转
-			Intent in=new Intent(MainActivity.this,oneActivity.class);
-			startActivity(in);
-			finish();*/
+		if (isfer) {
+
 
 			editor.putBoolean("isfer", false);
 			editor.apply();

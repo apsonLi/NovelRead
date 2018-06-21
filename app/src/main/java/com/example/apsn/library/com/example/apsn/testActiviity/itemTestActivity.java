@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.apsn.library.Adapter.testBookCatalogAdapter;
+import com.example.apsn.library.Adapter.exampleAdapter;
 import com.example.apsn.library.Bean.Books;
 import com.example.apsn.library.Bean.Catalog;
 import com.example.apsn.library.Bean.ResponseGetCatalog;
@@ -25,7 +25,6 @@ import com.example.apsn.library.Http.Httpconnect.httpRequestThread;
 import com.example.apsn.library.R;
 import com.example.apsn.library.View.Fsgifview;
 import com.example.apsn.library.com.example.apsn.read.ChapterReadActivity;
-import com.example.apsn.library.com.example.apsn.read.ReadActivity;
 
 import java.util.List;
 
@@ -173,7 +172,7 @@ public class itemTestActivity extends AppCompatActivity {
 
                             }
                             else {
-                                catalog.setAdapter(new testBookCatalogAdapter(Catalog,context));
+                                catalog.setAdapter(new exampleAdapter(Catalog,context));
 
                             }
                         }

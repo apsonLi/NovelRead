@@ -18,12 +18,12 @@ import java.util.List;
  * Created by apsn on 2018/3/17.
  */
 
-public class myListViewAdapter extends BaseAdapter {
+public class SearchResultAdapter extends BaseAdapter {
     private List<Books> data;
     private Context context;
     private LayoutInflater inflater;
 
-    public myListViewAdapter(Context context,List<Books> data){
+    public SearchResultAdapter(Context context, List<Books> data){
         this.context=context;
         this.data=data;
         inflater=LayoutInflater.from(context);
@@ -68,26 +68,26 @@ public class myListViewAdapter extends BaseAdapter {
         int type=getItemViewType(i);
         if(view==null)
         {
-            switch (type)
+            switch (type)//可以通过 type更换item样式
         {
             case 0:
                 view=inflater.inflate(R.layout.booksearchresultlist,null,false);
                 holder1=new ViewHolder1();
                 holder1.BookName=(TextView)view.findViewById(R.id.txt_bookName);
-                holder1.BookId=(TextView)view.findViewById(R.id.txt_bookId);
+
                 holder1.BookAuthor=(TextView)view.findViewById(R.id.txt_bookAuthor);
                 holder1.BookFromSource=(TextView)view.findViewById(R.id.txt_bookFromSource);
-                holder1.BookFromSourceId=(TextView)view.findViewById(R.id.txt_bookFromSourceId);
+
                 view.setTag(holder1);
                 break;
             case 1:
                 view=inflater.inflate(R.layout.booksearchresultlist,null,false);
                 holder2=new ViewHolder2();
                 holder2.BookName=(TextView)view.findViewById(R.id.txt_bookName);
-                holder2.BookId=(TextView)view.findViewById(R.id.txt_bookId);
+
                 holder2.BookAuthor=(TextView)view.findViewById(R.id.txt_bookAuthor);
                 holder2.BookFromSource=(TextView)view.findViewById(R.id.txt_bookFromSource);
-                holder2.BookFromSourceId=(TextView)view.findViewById(R.id.txt_bookFromSourceId);
+
                 view.setTag(holder2);
                 break;
             default:
@@ -110,17 +110,17 @@ public class myListViewAdapter extends BaseAdapter {
         {
             case 0:
                 holder1.BookName.setText(data.get(i).getBookName());
-                holder1.BookId.setText(data.get(i).getBookID());
+
                 holder1.BookAuthor.setText(data.get(i).getAuthor());
                 holder1.BookFromSource.setText(data.get(i).getSource().get(0).getSourceName());
-                holder1.BookFromSourceId.setText(data.get(i).getSource().get(0).getSourceBookID());
+
                 break;
             case 1:
                 holder2.BookName.setText(data.get(i).getBookName());
-                holder2.BookId.setText(data.get(i).getBookID());
+
                 holder2.BookAuthor.setText(data.get(i).getAuthor());
                 holder2.BookFromSource.setText(data.get(i).getSource().get(0).getSourceName());
-                holder2.BookFromSourceId.setText(data.get(i).getSource().get(0).getSourceBookID());
+
                 break;
 
         }
@@ -130,17 +130,17 @@ public class myListViewAdapter extends BaseAdapter {
     public class ViewHolder1
     {
         TextView BookName;
-        TextView BookId;
+
         TextView BookAuthor;
         TextView BookFromSource;
-        TextView BookFromSourceId;
+
     }
     public class ViewHolder2
     {
         TextView BookName;
-        TextView BookId;
+
         TextView BookAuthor;
         TextView BookFromSource;
-        TextView BookFromSourceId;
+
     }
 }

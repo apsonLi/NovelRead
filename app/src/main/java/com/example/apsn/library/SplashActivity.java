@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
 
 import com.example.apsn.library.DB.DbActivity;
+import com.example.apsn.library.Save.FilesaveExm;
 
 public class SplashActivity extends AppCompatActivity {
 private  static  final  int DISPLAY_TIME=2000;

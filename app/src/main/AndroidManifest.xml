@@ -29,7 +29,8 @@
         <activity android:name=".com.example.apsn.testActiviity.itemTestActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".com.example.apsn.classicLiterature.SummaryActivity" />
-        <activity android:name=".DB.DbActivity"></activity>
+        <activity android:name=".DB.DbActivity" />
+        <activity android:name=".Save.FilesaveExm"></activity>
     </application>
 
 </manifest>

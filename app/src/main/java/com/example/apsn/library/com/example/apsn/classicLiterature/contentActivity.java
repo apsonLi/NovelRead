@@ -1,6 +1,5 @@
 package com.example.apsn.library.com.example.apsn.classicLiterature;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -12,17 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.apsn.library.Adapter.myListViewAdapter;
+import com.example.apsn.library.Adapter.SearchResultAdapter;
 
 import com.example.apsn.library.Bean.Books;
 import com.example.apsn.library.Bean.ResponseSearchBook;
-import com.example.apsn.library.Bean.Source;
 import com.example.apsn.library.Http.Httpconnect.getSearchBookUrl;
 import com.example.apsn.library.Http.Httpconnect.httpRequestThread;
 import com.example.apsn.library.Http.Httpconnect.searchBooksUtil;
 import com.example.apsn.library.R;
 import com.example.apsn.library.View.Fsgifview;
-import com.example.apsn.library.com.example.apsn.testActiviity.itemTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +137,7 @@ public class contentActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                         Toast.makeText(context,"获取"+responCode,Toast.LENGTH_LONG).show();
-                            listView.setAdapter(new myListViewAdapter(context,BooksList));
+                            listView.setAdapter(new SearchResultAdapter(context,BooksList));
 
                         }
                     });

@@ -19,8 +19,7 @@ import android.widget.RadioButton;
 
 public class LibraryActivity extends AppCompatActivity implements View.OnClickListener, MeFragment.OnFragmentInteractionListener, ShelfFragment.OnFragmentInteractionListener {
 
-    private Bundle clickchoice;
-    private Intent intent;
+
     private ShelfFragment shelfFragment;
     private MeFragment meFragment;
     private FragmentManager fragmentManager;
@@ -29,7 +28,10 @@ public class LibraryActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
-        getSupportActionBar().hide();
+        if(getSupportActionBar() !=null){
+            getSupportActionBar().hide();
+        }
+
         init();
 
     }
@@ -37,7 +39,7 @@ public class LibraryActivity extends AppCompatActivity implements View.OnClickLi
 
     public void init() {
         fragmentManager = getSupportFragmentManager();
-        LinearLayout bottom = (LinearLayout) findViewById(R.id.bottom);
+        //LinearLayout bottom = (LinearLayout) findViewById(R.id.bottom);
         RadioButton rbshelf = (RadioButton) findViewById(R.id.rb_shelf);
         RadioButton rbme = (RadioButton) findViewById(R.id.rb_me);
         rbshelf.setOnClickListener(this);
