@@ -24,6 +24,7 @@ public class DbActivity extends AppCompatActivity {
         if(db == null){
             Log.d("error", "Dbtest.getdb has nullpointExceptino");
         }
+
         else {
             //将drawable转化为Bitmap
             Bitmap bmp = BitmapFactory.decodeResource(getResources() , R.drawable.logo);

@@ -11,9 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
-import android.widget.LinearLayout;
-
 import android.widget.RadioButton;
 
 
@@ -46,6 +43,7 @@ public class LibraryActivity extends AppCompatActivity implements View.OnClickLi
         rbme.setOnClickListener(this);
         setTabSelection(0);
 
+
     }
 
     private void setTabSelection(int index) {
@@ -57,15 +55,15 @@ public class LibraryActivity extends AppCompatActivity implements View.OnClickLi
         hideFragments(transaction);
         switch (index) {
             case 0:
-                // 当点击了消息tab时，改变控件的图片和文字颜色
+
 
                 if (shelfFragment == null) {
-                    // 如果MessageFragment为空，则创建一个并添加到界面上
+
                     shelfFragment = new ShelfFragment();
                     transaction.add(R.id.topPanel, shelfFragment);
                     Log.d("suc", "setTabSelection(0) returned: " + 0);
                 } else {
-                    // 如果MessageFragment不为空，则直接将它显示出来
+
                     transaction.show(shelfFragment);
                     Log.d("suc", "setTabSelection(0) returned: " + 0);
                 }

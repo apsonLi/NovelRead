@@ -30,7 +30,7 @@ import java.util.List;
 
 import static com.example.apsn.library.Http.Httpconnect.sk.secretKey.getKey;
 
-public class itemTestActivity extends AppCompatActivity {
+public class chapterActivity extends AppCompatActivity {
     private  static ResponseGetCatalog  responseGetCatalog;
     private static List<Catalog> Catalog;
     private static String code;
@@ -48,7 +48,7 @@ public class itemTestActivity extends AppCompatActivity {
         {
             String code=msg.getData().getString("Code");
             linearLayouttest3.setVisibility(View.GONE);
-            Toast.makeText(itemTestActivity.this,code,Toast.LENGTH_SHORT).show();
+            Toast.makeText(chapterActivity.this,code,Toast.LENGTH_SHORT).show();
         }
         }
     };
@@ -93,7 +93,7 @@ public class itemTestActivity extends AppCompatActivity {
                         intent = new Intent();
                         intent.putExtras(bundle);
 
-                        intent.setClass(itemTestActivity.this, ChapterReadActivity.class);
+                        intent.setClass(chapterActivity.this, ChapterReadActivity.class);
                         startActivity(intent);
 
                     }
@@ -167,8 +167,8 @@ public class itemTestActivity extends AppCompatActivity {
                             int a=Catalog.size();
                             if(a==0)
                             {
-                                Toast.makeText(itemTestActivity.this,"这本书没有任何章节 请尝试换源",Toast.LENGTH_SHORT).show();
-                                itemTestActivity.this.finish();
+                                Toast.makeText(chapterActivity.this,"这本书没有任何章节 请尝试换源",Toast.LENGTH_SHORT).show();
+                                chapterActivity.this.finish();
 
                             }
                             else {

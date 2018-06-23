@@ -2,11 +2,13 @@ package com.example.apsn.library.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.apsn.library.DB.Shelfbean;
@@ -68,7 +70,8 @@ public class shelfAdapter extends BaseAdapter {
                     view=inflater.inflate(R.layout.shelfbeanliststyle,null,false);
                     holder2=new ViewHolder2();
                     holder2.BookName= view.findViewById(R.id.booknameitem);
-
+                    holder2.bookimg= view.findViewById(R.id.bookimg);
+                    holder2.newtitle= view.findViewById(R.id.newtitle);
                     view.setTag(holder2);
                     break;
 
@@ -92,7 +95,10 @@ public class shelfAdapter extends BaseAdapter {
                 holder1.tips.setText("请去搜索自己喜欢的书籍");
                 break;
              default:
-                holder2.BookName.setText(data.get(i).getBookname());
+                 holder2.BookName.setText(data.get(i).getBookname());
+                 byte []  tem = data.get(i).getImg();
+                 holder2.bookimg.setImageBitmap(BitmapFactory.decodeByteArray(tem , 0 ,tem.length));
+                 holder2.newtitle.setText(data.get(i).getNewtitle());
                 break;
 
         }
@@ -108,7 +114,8 @@ public class shelfAdapter extends BaseAdapter {
     }
     public class ViewHolder2
     {
-
+        ImageView bookimg;
+        TextView newtitle;
         TextView BookName;
 
 

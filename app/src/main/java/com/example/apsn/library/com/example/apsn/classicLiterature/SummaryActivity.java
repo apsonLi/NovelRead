@@ -1,12 +1,14 @@
 package com.example.apsn.library.com.example.apsn.classicLiterature;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,17 +19,14 @@ import android.widget.Toast;
 import com.example.apsn.library.Bean.Books;
 import com.example.apsn.library.Bean.ResponseBookInfo;
 import com.example.apsn.library.Bean.ResponseNewest;
-import com.example.apsn.library.Http.Httpconnect.getCatalogUtil;
+import com.example.apsn.library.DB.DbUtil;
 import com.example.apsn.library.Http.Httpconnect.getGetCatalogUrl;
 import com.example.apsn.library.Http.Httpconnect.getInfoUtil;
-import com.example.apsn.library.Http.Httpconnect.getNewestUtil;
 import com.example.apsn.library.Http.Httpconnect.httpRequestThread;
 import com.example.apsn.library.R;
 import com.example.apsn.library.com.example.apsn.read.ReadActivity;
-import com.example.apsn.library.com.example.apsn.testActiviity.itemTestActivity;
+import com.example.apsn.library.com.example.apsn.testActiviity.chapterActivity;
 
-
-import java.io.IOException;
 
 import static com.example.apsn.library.Http.Httpconnect.httpUtil.getImage;
 import static com.example.apsn.library.Http.Httpconnect.sk.secretKey.getKey;
@@ -48,6 +47,13 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
     private Bitmap bitmap;
     private ResponseBookInfo responseBookInfo;
     private ResponseNewest responseNewest;
+    private jaydenxiao.com.expandabletextview.ExpandableTextView moyan;
+    private jaydenxiao.com.expandabletextview.ExpandableTextView cscs;
+    private jaydenxiao.com.expandabletextview.ExpandableTextView jy;
+    private Intent intent;
+    private Bundle bundle;
+    private Button addbook;
+    private int FLAG = 0;
     private Handler mhandle=new Handler()
     {
         @Override
@@ -58,6 +64,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
                 responseBookInfo=(ResponseBookInfo)msg.getData().getSerializable("responseinfo");
                 if(responseBookInfo!=null)
                 {
+                    FLAG = 1;
                     novel_summary.setText(responseBookInfo.getBookProfile());
                    // System.out.print(responseBookInfo.toString());
                     novel_newest_chapter.setText(responseBookInfo.getTheNewestTitle().getTitle());
@@ -68,12 +75,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
             }
         }
     };
-    private jaydenxiao.com.expandabletextview.ExpandableTextView moyan;
-    private jaydenxiao.com.expandabletextview.ExpandableTextView cscs;
-    private jaydenxiao.com.expandabletextview.ExpandableTextView jy;
-    private Intent intent;
-    private Bundle bundle;
-    private Button addbook;
+    private byte[] img;
 
 
     @Override
@@ -89,6 +91,11 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
     }
     private  void init()
     {
+        SQLiteDatabase db = DbUtil.getdb(getApplicationContext());
+
+        if(db == null){
+            Log.d("error", "Dbtest.getdb has nullpointExceptino");
+        }
         addbook = (Button)findViewById(R.id.addBook);
         moyan = (jaydenxiao.com.expandabletextview.ExpandableTextView)findViewById(R.id.moyan);
         moyan.setText(getResources().getString(R.string.mysummary));
@@ -105,6 +112,7 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
         chapter = (Button) findViewById(R.id.chapter);
         read = (Button)findViewById(R.id.read);
         books=(Books) getIntent().getExtras().getSerializable("Books");
+
         if(books!=null)
         {
             novel_name.setText(books.getBookName());
@@ -151,8 +159,8 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void run() {
                         try {
-                            byte[] data = getImage(img_url);
-                            bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            img = getImage(img_url);
+                            bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
                             novel_img.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -183,25 +191,55 @@ public class SummaryActivity extends AppCompatActivity implements View.OnClickLi
                     SummaryActivity.this.finish();
                 break;
             case R.id.chapter:
-                intent = new Intent();
-                intent.setClass(SummaryActivity.this,itemTestActivity.class);
-                bundle = new Bundle();
-                bundle.putSerializable("summary2chapter",books);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if(books != null){
+                    intent = new Intent();
+                    intent.setClass(SummaryActivity.this,chapterActivity.class);
+                    bundle = new Bundle();
+                    bundle.putSerializable("summary2chapter",books);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.read:
-                intent =new Intent();
-                intent.setClass(SummaryActivity.this, ReadActivity.class);
-                bundle=new Bundle();
-                intent.putExtra("action","summary");
-                bundle.putSerializable("summary2read",books);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (books != null) {
+                    intent =new Intent();
+                    intent.setClass(SummaryActivity.this, ReadActivity.class);
+                    bundle=new Bundle();
+                    intent.putExtra("action","summary");
+                    bundle.putSerializable("summary2read",books);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
                 break;
+//            "bookid varchar(50) primary key ,"
+//         + "bookname varchar(20) not null,"
+//         + "bookprofile text not null,"
+//         + "sourcename varchar(20) not null,"
+//         + "sourcebookid varchar(20) not null,"
+//         + "img BLOB not null,"
+//         + "newtitle varchar(50) not null"
+//         + ");";
             case R.id.addBook:
+                //执行数据库插入操作
+                if(FLAG != 0 && img != null){
+                    DbUtil.insertShelf( DbUtil.ShelfToContentValues(DbUtil.mockShelfBean( books.getBookID(),books.getBookName(), responseBookInfo.getBookProfile(),books.getSource().get(0).getSourceName(),books.getSource().get(0).getSourceBookID(),img, responseBookInfo.getTheNewestTitle().getTitle())));
+                    //插入成功后 发送广播，通知书架改变UI
+                    Log.d("succ", DbUtil.mockShelfBean( books.getBookID(),books.getBookName(), responseBookInfo.getBookProfile(),books.getSource().get(0).getSourceName(),books.getSource().get(0).getSourceBookID(),img, responseBookInfo.getTheNewestTitle().getTitle()).toString());
+                    intent =new Intent("refresh");
 
+                    intent.putExtra("isInsert",true);
+                    sendBroadcast(intent);
+                }
+                else {
+                    if(img != null){
+                    Log.d("error", FLAG+""+img.toString());
+                }
+
+                }
+
+
+                break;
 
 
 

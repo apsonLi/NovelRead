@@ -81,10 +81,12 @@ public class DbUtil {
     public static List<Shelfbean> queryShelf(){
         Cursor cursor =database.query(TABLE_Name,null,null,null,null,null,null,null);
         // 不断移动光标获取值
+
+        list_shelfbeen =new ArrayList<Shelfbean>();
         while (cursor.moveToNext()) {
             // 直接通过索引获取字段值
 
-            list_shelfbeen =new ArrayList<Shelfbean>();
+
             // 先获取 name 的索引值，然后再通过索引获取字段值
             String bookid = cursor.getString(cursor.getColumnIndex("bookid"));
             String bookname = cursor.getString(cursor.getColumnIndex("bookname"));
@@ -104,11 +106,11 @@ public class DbUtil {
     }
     //删除
     public static  int delete(String name){
-       return database.delete(TABLE_Name ,"name=?",new String []{String.valueOf(name)});
+       return database.delete(TABLE_Name ,"bookid=?",new String []{String.valueOf(name)});
     }
     //更新
     public static  int update(String name,ContentValues contentValues){
-      return   database.update("product", contentValues, "name=?", new String[] { String.valueOf(name) });
+      return   database.update("product", contentValues, "bookid=?", new String[] { String.valueOf(name) });
     }
 
 }

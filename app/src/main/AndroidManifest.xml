@@ -26,7 +26,7 @@
         <activity android:name=".com.example.apsn.read.ReadActivity" />
         <activity android:name=".com.example.apsn.searchActivity" />
         <activity android:name=".com.example.apsn.read.ChapterReadActivity" />
-        <activity android:name=".com.example.apsn.testActiviity.itemTestActivity" />
+        <activity android:name=".com.example.apsn.testActiviity.chapterActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".com.example.apsn.classicLiterature.SummaryActivity" />
         <activity android:name=".DB.DbActivity" />

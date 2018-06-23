@@ -1,7 +1,9 @@
 package com.example.apsn.library;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,9 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.example.apsn.library.Adapter.shelfAdapter;
@@ -121,11 +125,31 @@ public class ShelfFragment extends Fragment   {
                 refreshLayout.setRefreshing(false);
             }
         });
+        //接受广播
+       BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+           @Override
+           public void onReceive(Context context, Intent intent) {
+               shelfbeanList = dbquery();
+               bookShelf.setAdapter(new shelfAdapter(shelfbeanList,getActivity()));
+           }
+       };
+       //注册广播
+        IntentFilter filter = new IntentFilter("refresh");
+        getActivity().registerReceiver(broadcastReceiver, filter);
         //从数据库去出数据后渲染到listview
-        shelfbeanList = dbquery();
-
+            shelfbeanList = dbquery();
+        Log.d("list.size",shelfbeanList.size()+"");
             bookShelf.setAdapter(new shelfAdapter(shelfbeanList,getActivity()));
 
+            bookShelf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent =new Intent();
+//                intent.setClass(getActivity(),searchActivity.class);
+//                startActivity(intent);
+                Toast.makeText(getActivity(),shelfbeanList.get(i).getBookname(),Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
